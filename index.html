@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HikeMath — Salary Hike Calculator: Hike % to New CTC & In-Hand Salary</title>
+<meta name="description" content="Free salary increment calculator. Convert a hike percentage into your new CTC and estimated monthly in-hand, find the hike needed for a target salary, and project future years.">
+<link rel="canonical" href="https://hikemath.fixoraa.tech/">
+<meta property="og:title" content="HikeMath — Salary Hike Calculator: Hike % to New CTC & In-Hand Salary">
+<meta property="og:description" content="Free salary increment calculator. Convert a hike percentage into your new CTC and estimated monthly in-hand, find the hike needed for a target salary, and project future years.">
+<meta property="og:url" content="https://hikemath.fixoraa.tech/">
+<meta property="og:type" content="website">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+:root{--pri:#7C3AED;--acc:#FACC15;--bgc:#F5F3FF}
+body{background:var(--bgc);font-family:'Segoe UI',system-ui,sans-serif}
+.pri{background:var(--pri)} .prit{color:var(--pri)} .acct{color:var(--acc)}
+.btn{background:var(--pri);color:#fff;padding:.6rem 1.2rem;border-radius:.6rem;font-weight:600;cursor:pointer;border:none}
+.btn:hover{opacity:.9} .btn2{background:var(--acc);color:#111;padding:.6rem 1.2rem;border-radius:.6rem;font-weight:600;cursor:pointer;border:none}
+input,select,textarea{border:1.5px solid #cbd5e1;border-radius:.55rem;padding:.55rem .7rem;width:100%;background:#fff;color:#0f172a}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--pri);border-color:transparent}
+label{font-size:.83rem;font-weight:600;display:block;margin-bottom:.3rem}
+.card{background:#fff;border-radius:1rem;box-shadow:0 8px 30px rgba(15,23,42,.08);padding:1.4rem}
+article p{margin:.7rem 0;line-height:1.75;color:#334155}
+article h2{font-size:1.45rem;font-weight:800;margin:1.6rem 0 .4rem;color:#0f172a}
+.faq{background:#fff;border-radius:.7rem;padding:.9rem 1.1rem;margin:.55rem 0;box-shadow:0 2px 10px rgba(15,23,42,.05)}
+.faq summary{font-weight:700;cursor:pointer}
+table.dt{width:100%;border-collapse:collapse} table.dt th,table.dt td{border:1px solid #e2e8f0;padding:.45rem .6rem;text-align:left;font-size:.9rem}
+table.dt th{background:#f1f5f9}
+
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "HikeMath", "url": "https://hikemath.fixoraa.tech/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Free salary increment calculator. Convert a hike percentage into your new CTC and estimated monthly in-hand, find the hike needed for a target salary, and project future years."}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do I convert a hike percentage into my new salary?", "acceptedAnswer": {"@type": "Answer", "text": "Multiply your current CTC by (1 + hike/100). A 12% hike on \u20b99 lakh gives \u20b910.08 lakh. HikeMath does this instantly and also estimates your monthly in-hand from the new figure."}}, {"@type": "Question", "name": "Why is my in-hand so much lower than my CTC?", "acceptedAnswer": {"@type": "Answer", "text": "CTC includes employer PF, gratuity and insurance that never reach your monthly account, and your gross is reduced by employee PF, income tax and professional tax. A blended in-hand of roughly 70\u201380% of gross is typical."}}, {"@type": "Question", "name": "What hike percentage should I ask for?", "acceptedAnswer": {"@type": "Answer", "text": "Base it on a target CTC grounded in market data for your role, then compute the percentage that target implies. If it far exceeds internal bands (often 10\u201320%), a promotion or job change is usually the realistic route."}}, {"@type": "Question", "name": "Is a 30% hike on switching always better than 12% staying?", "acceptedAnswer": {"@type": "Answer", "text": "Not automatically. Compare fixed pay and in-hand, not headlines \u2014 a switch offer heavy in variable pay or one-time bonuses may be worth less than it looks. The compounding of a higher base, though, is a genuine long-term advantage."}}, {"@type": "Question", "name": "How do hikes compound over five years?", "acceptedAnswer": {"@type": "Answer", "text": "Each hike applies to the enlarged base: five years of 12% raises total about 76% growth, not 60%. The projection table shows your exact path year by year."}}, {"@type": "Question", "name": "Is the in-hand estimate exact?", "acceptedAnswer": {"@type": "Answer", "text": "No \u2014 it is a planning estimate using a typical deduction blend. Your real in-hand depends on basic-pay share, tax regime, PF choices and declarations. Use it to compare offers, then confirm finalists with a detailed breakdown."}}]}</script>
+</head>
+<body id="top">
+<header class="sticky top-0 z-40 shadow-md" style="background:#4C1D95">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 py-3 flex items-center justify-between">
+    <a href="#top" class="text-xl font-extrabold tracking-tight" style="color:#F5F3FF">📈 HikeMath</a>
+    <nav class="flex gap-5 text-sm font-semibold" style="color:#F5F3FF">
+      <a href="#top" class="hover:underline">Home</a>
+      <a href="https://fixoraa.tech" class="hover:underline">More Tools</a>
+    </nav>
+  </div>
+</header>
+<div class="no-print mx-auto max-w-6xl px-4 sm:px-6 pt-4" role="complementary" aria-label="Advertisement">
+  <div class="mx-auto text-center" style="max-width:728px">
+    <span class="block text-[10px] tracking-[0.18em] uppercase text-slate-400 mb-1.5">Advertisement</span>
+    <div class="flex justify-center overflow-hidden">
+      <div class="origin-top scale-[0.44] sm:scale-100 shrink-0">
+        <script>
+          atOptions = { 'key' : '4e68ac77881c17fe128a46565d9a4e8c', 'format' : 'iframe', 'height' : 90, 'width' : 728, 'params' : {} };
+        </script>
+        <script src="https://www.highrevenueformat.com/4e68ac77881c17fe128a46565d9a4e8c/invoke.js"></script>
+      </div>
+    </div>
+  </div>
+</div>
+<main class="mx-auto max-w-6xl px-4 sm:px-6 py-8">
+  <div class="text-center mb-6">
+    <h1 class="text-3xl sm:text-4xl font-extrabold" style="color:#0f172a">Salary Hike & Increment Calculator</h1>
+    <p class="mt-2 text-slate-600 max-w-2xl mx-auto">Got a hike letter — or negotiating one? HikeMath converts percentages into real money: your new CTC, estimated monthly in-hand, the raise you actually need for a target salary, and where steady hikes take you in five years.</p>
+    <span class="inline-block mt-3 px-3 py-1 rounded-full text-xs font-bold text-white pri">✓ Unlimited Free Usage — No Signup, No Watermark</span>
+  </div>
+  <div class="grid md:grid-cols-5 gap-6">
+  <div class="card md:col-span-2 space-y-3">
+    <div><label>Current CTC (per year)</label><input id="ctc" type="number" value="900000"></div>
+    <div><label>Hike offered (%)</label><input id="hike" type="number" step="0.5" value="12"></div>
+    <div><label>— or — target CTC you want</label><input id="target" type="number" placeholder="e.g. 1200000"></div>
+    <div><label>Second offer CTC (to compare, optional)</label><input id="offer2" type="number" placeholder="e.g. 1150000"></div>
+    <button class="btn w-full" onclick="calc()">Calculate My Hike</button>
+  </div>
+  <div class="card md:col-span-3">
+    <div class="grid grid-cols-2 gap-3 text-center">
+      <div class="p-3 rounded-lg bg-violet-50"><div class="text-xs font-bold">NEW CTC</div><div id="oNew" class="text-2xl font-extrabold">–</div></div>
+      <div class="p-3 rounded-lg bg-yellow-50"><div class="text-xs font-bold">EST. MONTHLY IN-HAND</div><div id="oHand" class="text-2xl font-extrabold">–</div></div>
+      <div class="p-3 rounded-lg bg-violet-50"><div class="text-xs font-bold">EXTRA PER YEAR</div><div id="oGain" class="text-2xl font-extrabold">–</div></div>
+      <div class="p-3 rounded-lg bg-yellow-50"><div class="text-xs font-bold">HIKE NEEDED FOR TARGET</div><div id="oNeed" class="text-2xl font-extrabold">–</div></div>
+    </div>
+    <div id="cmp" class="mt-3 font-semibold"></div>
+    <h3 class="font-bold mt-4 mb-2">If this hike repeats every year…</h3>
+    <div class="overflow-x-auto"><table class="dt" id="tbl"></table></div>
+    <p class="text-xs text-slate-500 mt-2">In-hand is an estimate (roughly 78% of gross after PF, tax and professional tax). Your exact figure depends on your salary structure and tax regime.</p>
+  </div></div>
+</main>
+<div class="no-print mx-auto max-w-6xl px-4 sm:px-6 pb-4" role="complementary" aria-label="Advertisement">
+  <div class="mx-auto text-center" style="max-width:728px">
+    <span class="block text-[10px] tracking-[0.18em] uppercase text-slate-400 mb-1.5">Advertisement</span>
+    <div class="flex justify-center overflow-hidden">
+      <script async src="https://js.wpadmngr.com/static/adManager.js" data-admpid="464498"></script>
+    </div>
+  </div>
+</div>
+<section class="mx-auto max-w-4xl px-4 sm:px-6 pb-6">
+  <article>
+  <h2>Why a hike percentage never tells the whole story</h2>
+<p>Appraisal season runs on percentages, but percentages hide the money. A 15 percent hike on a ₹6 lakh package is ₹90,000 a year; the same percentage on ₹20 lakh is ₹3 lakh. Meanwhile a 'disappointing' 8 percent at a senior level can quietly out-earn a headline 20 percent at a junior one. HikeMath translates every percentage into the numbers that actually change your life — new CTC, monthly in-hand, and total yearly gain — so you can judge an offer by its effect on your bank account rather than by how the percentage sounds in the appraisal meeting.</p>
+<p>The second hidden story is compounding. Hikes stack on hikes: a professional who averages 12 percent for five years does not earn 60 percent more — they earn about 76 percent more, because each raise enlarges the base the next one multiplies. That is why negotiating an extra two percent today, or switching jobs for a step-change once, matters far more than it appears. Your future salary is built on today's number, which makes today's negotiation one of the highest-value hours of your year.</p>
+<h2>CTC, gross and in-hand: know what you actually negotiated</h2>
+<p>Cost to company is the employer's total spend, not your salary. Inside a typical CTC sit your basic pay, HRA and allowances, plus employer provident fund contributions, gratuity accruals, insurance premiums and variable pay that may or may not arrive in full. Two offers with identical CTC can differ by thousands a month in-hand if one loads more into variable pay or employer contributions. When you compare a hike against an outside offer, always compare structure as well as size — fixed versus variable, and the in-hand estimate this calculator shows.</p>
+<p>A useful discipline: convert every offer to estimated monthly in-hand before reacting to it. The in-hand figure here is deliberately a blended estimate — roughly 78 percent of gross for many mid-range packages — because exact payslips depend on your regime, your basic-pay share and your declarations. Use it for ranking and negotiation, then verify the finalist offer with a detailed salary breakdown from HR. Employers expect this diligence; asking for the structure is professionalism, not distrust.</p>
+<h2>How to use the target-hike mode in a negotiation</h2>
+<p>Enter the CTC you genuinely want in the target field and HikeMath tells you the percentage required to reach it. That number reframes the conversation. If your target needs 33 percent and your company band caps internal hikes at 15, no amount of meeting-room eloquence closes the gap — you know, privately and early, that the target requires a job change, a promotion, or a longer timeline. If the target needs 14 percent and the offer is 11, the negotiation is a small, winnable distance, and you can argue it with specifics: market data, expanded scope, delivered results.</p>
+<p>Bring the same clarity to outside offers. Enter a competing offer in the comparison field and the tool states its true hike percentage over your current CTC. Offers are often inflated by sign-on bonuses and higher variable shares; a 30 percent headline can shrink to 18 percent in fixed pay. Decide with the fixed, recurring number — bonuses are spent once, but your base compounds forever.</p>
+<h2>The five-year projection: your career's quiet engine</h2>
+<p>The projection table takes your new CTC and applies the same hike for five years. Treat it as a scenario, not a promise — but notice its lesson: consistent, unspectacular hikes beat alternating spikes and droughts. Two professionals starting together can end a decade apart in pay purely because one protected their compounding with steady increments, timely switches and no zero-hike years accepted without protest. When a year offers no hike, the projection shows what that silence costs over time — useful fuel for a calm, factual conversation with your manager.</p>
+<p>Also test a switch scenario: raise this year's hike to the 30–40 percent a job change often brings, then project forward at normal rates. The gap between the two tables after five years is the real price of staying comfortable. Sometimes the gap is worth paying — for learning, stability, a great team. But pay it knowingly, with the number in front of you, not by default.</p>
+<h2>Negotiating beyond the percentage</h2>
+<p>Salary is the loudest lever, not the only one. A joining bonus can bridge a gap the band cannot. An extra week of leave, a training budget, a title that unlocks your next move, a review cycle moved six months earlier — each has real value, and some cost your employer less than cash, which makes them easier to grant. Structure the ask: the number you need, the evidence behind it, and two or three acceptable ways to reach it. People who negotiate this way are remembered as reasonable — and reasonableness is what gets approved up the chain.</p>
+<p>Finally, protect the relationship while you push. Thank them for the offer, state your case once, clearly, with the target and the maths, and give a genuine deadline you will honour. Whether the answer is yes or no, you leave the conversation with information: where you stand, what the ceiling is, and what your next move should be. That information, compounded over a career, is worth more than any single hike.</p>
+<h2>Common hike mistakes to avoid</h2>
+<p>The first is celebrating the percentage while ignoring a structure change — a bigger variable share can make a 'hike' a pay cut in a bad year. The second is comparing your hike with a colleague's percentage without knowing their base; percentages on different bases are different money. The third is forgetting tax: crossing into a higher slab or losing a benefit can shave the real gain, which is another reason to judge offers by in-hand, not headlines.</p>
+<p>The fourth mistake is letting one modest year become a pattern. Pay compounds, so drift compounds too. Track your CTC history year by year — this calculator's projection makes the cost of drift vivid — and treat two consecutive below-market years as a signal to test the market seriously. Loyalty is a virtue; unexamined loyalty at a compounding discount is a donation.</p>
+<h2>Reading your hike letter like an analyst</h2>
+<p>When the letter arrives, read it in a fixed order. First, the new fixed CTC — the number that compounds. Second, the structure: did the variable share quietly grow, converting a raise into a hope? Third, the effective date and arrears, which change this year's actual cash. Fourth, anything else that moved — title, level, review cycle — because a level change this year is next year's band change. Only then react. People who read letters emotionally negotiate emotionally; people who read them in this order negotiate with the projection table open, and the difference compounds for decades.</p>
+<p>Keep your own salary ledger: one line per year — company, CTC, fixed share, level. Patterns invisible in memory are obvious in a ledger, and market conversations become factual when you can say 'my base has grown 31 percent in three years against a market median near 55 for this role'. HikeMath's projections are the forward half of that ledger; the backward half is yours to keep, and together they turn appraisal season from weather into climate — something you can dress for.</p>
+  <h2>Frequently Asked Questions</h2>
+  <details class="faq"><summary>How do I convert a hike percentage into my new salary?</summary><p>Multiply your current CTC by (1 + hike/100). A 12% hike on ₹9 lakh gives ₹10.08 lakh. HikeMath does this instantly and also estimates your monthly in-hand from the new figure.</p></details>
+<details class="faq"><summary>Why is my in-hand so much lower than my CTC?</summary><p>CTC includes employer PF, gratuity and insurance that never reach your monthly account, and your gross is reduced by employee PF, income tax and professional tax. A blended in-hand of roughly 70–80% of gross is typical.</p></details>
+<details class="faq"><summary>What hike percentage should I ask for?</summary><p>Base it on a target CTC grounded in market data for your role, then compute the percentage that target implies. If it far exceeds internal bands (often 10–20%), a promotion or job change is usually the realistic route.</p></details>
+<details class="faq"><summary>Is a 30% hike on switching always better than 12% staying?</summary><p>Not automatically. Compare fixed pay and in-hand, not headlines — a switch offer heavy in variable pay or one-time bonuses may be worth less than it looks. The compounding of a higher base, though, is a genuine long-term advantage.</p></details>
+<details class="faq"><summary>How do hikes compound over five years?</summary><p>Each hike applies to the enlarged base: five years of 12% raises total about 76% growth, not 60%. The projection table shows your exact path year by year.</p></details>
+<details class="faq"><summary>Is the in-hand estimate exact?</summary><p>No — it is a planning estimate using a typical deduction blend. Your real in-hand depends on basic-pay share, tax regime, PF choices and declarations. Use it to compare offers, then confirm finalists with a detailed breakdown.</p></details>
+  </article>
+</section>
+<footer class="mt-6 py-8" style="background:#4C1D95;color:#F5F3FF">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 text-center text-sm">
+    <p class="font-bold text-base">HikeMath</p>
+    <p class="opacity-80 mt-1">Free salary increment calculator. Convert a hike percentage into your new CTC and estimated monthly in-hand, find the hike needed for a target salary, and project future years.</p>
+    <p class="mt-2"><a href="#top" class="underline">Home</a> · <a href="https://fixoraa.tech" class="underline">More Tools</a></p>
+    <p class="fx-credit" style="text-align:center;font-size:12.5px;opacity:.62;margin:10px auto 2px;letter-spacing:.01em">Made by <a href="https://fixoraa.tech" target="_blank" rel="noopener" style="color:inherit;font-weight:700;text-decoration:underline;text-underline-offset:2px">Fixoraa</a></p>
+  </div>
+</footer>
+<script id="lib-hikemath">
+
+function hikeCalc(currentCtc, hikePct){
+  var newCtc = currentCtc*(1+hikePct/100);
+  var monthlyGross = newCtc/12;
+  var estInHand = monthlyGross*0.78; // rough: PF, tax, professional tax blend
+  return {newCtc:Math.round(newCtc), monthlyGross:Math.round(monthlyGross), estInHand:Math.round(estInHand), yearlyGain:Math.round(newCtc-currentCtc)};
+}
+function hikeNeeded(currentCtc, targetCtc){ return Math.round((targetCtc/currentCtc-1)*1000)/10; }
+function projection(ctc, hikePct, years){
+  var rows=[], v=ctc;
+  for(var y=1;y<=years;y++){ v=v*(1+hikePct/100); rows.push({year:y, ctc:Math.round(v)}); }
+  return rows;
+}
+if (typeof module!=="undefined") module.exports={hikeCalc:hikeCalc, hikeNeeded:hikeNeeded, projection:projection};
+
+</script>
+<script>
+
+function fmt(n){return '₹'+n.toLocaleString('en-IN');}
+function calc(){
+  var ctc=+document.getElementById('ctc').value, hike=+document.getElementById('hike').value;
+  var r=hikeCalc(ctc,hike);
+  document.getElementById('oNew').textContent=fmt(r.newCtc);
+  document.getElementById('oHand').textContent=fmt(r.estInHand);
+  document.getElementById('oGain').textContent=fmt(r.yearlyGain);
+  var t=+document.getElementById('target').value;
+  document.getElementById('oNeed').textContent= t>0 ? hikeNeeded(ctc,t)+'%' : '—';
+  var o2=+document.getElementById('offer2').value;
+  document.getElementById('cmp').textContent= o2>0 ? ('Offer comparison: the second offer of '+fmt(o2)+' is a '+hikeNeeded(ctc,o2)+'% hike over your current CTC — '+(o2>r.newCtc?'it beats the hike on CTC alone; check variable pay, joining bonus and role growth before deciding.':'the internal hike to '+fmt(r.newCtc)+' is higher on CTC alone; weigh stability and growth too.')) : '';
+  var rows=projection(r.newCtc,hike,5);
+  document.getElementById('tbl').innerHTML='<tr><th>Year</th><th>Projected CTC</th><th>Est. monthly in-hand</th></tr>'+rows.map(function(x){return '<tr><td>+'+x.year+'</td><td>'+fmt(x.ctc)+'</td><td>'+fmt(Math.round(x.ctc/12*0.78))+'</td></tr>';}).join('');
+}
+calc();
+
+</script>
+</body>
+</html>
